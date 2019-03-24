@@ -13,19 +13,21 @@ object Versions {
 
     const val nebula_clojure_gradle_plugin: String = "8.1.1" 
 
-    const val cljunit: String = "0.2.0" // available: "0.6.0"
+    const val cljunit: String = "0.6.0" 
 
-    const val mathz: String = "0.1.0" // available: "0.3.0"
+    const val clojure_utils: String = "0.8.0" 
 
-    const val mikera: String = "1.5.0" // available: "1.6.1"
+    const val mathz: String = "0.3.0" 
 
-    const val orculje: String = "0.0.2" // available: "0.0.3"
+    const val mikera: String = "1.6.1" 
+
+    const val orculje: String = "0.0.3" 
 
     const val swing_console: String = "0.1.2" 
 
-    const val clojure: String = "1.5.1" // available: "1.10.0"
+    const val clojure: String = "1.10.0" 
 
-    const val math_combinatorics: String = "0.0.3" // available: "0.1.4"
+    const val math_combinatorics: String = "0.1.4" 
 
     /**
      *

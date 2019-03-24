@@ -22,6 +22,10 @@ object Libs {
     const val cljunit: String = "net.mikera:cljunit:" + Versions.cljunit
 
     /**
+     * https://github.com/mikera/clojure-pom */
+    const val clojure_utils: String = "net.mikera:clojure-utils:" + Versions.clojure_utils
+
+    /**
      * git@github.com:mikera/${project.artifactId}.git */
     const val mathz: String = "net.mikera:mathz:" + Versions.mathz
 

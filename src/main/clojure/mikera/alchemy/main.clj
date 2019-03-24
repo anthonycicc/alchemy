@@ -3,8 +3,9 @@
   (:use mikera.cljutils.error)
   (:use mikera.orculje.util)
   (:require [mikera.cljutils.loops :as loop])
+  (:require [mikera.cljutils.text :as text])
   (:require [mikera.orculje.gui :as gui])
-  (:require [mikera.orculje.text :as text])  
+;  (:require [mikera.orculje.text :as text])
   (:require [mikera.alchemy.world :as world])
   (:require [mikera.alchemy.lib :as lib])
   (:require [mikera.alchemy.engine :as engine])
@@ -177,7 +178,7 @@
       (.setForeground jc ^Color TEXT_COLOUR)
       (let [effs (filter :is-effect (contents hero))
             eff-string (apply str (distinct (map #(str (text/capitalise (:name %)) "  ") effs)))]
-        (gui/draw jc 1 (+ sy 2) (text/truncate-with-dots eff-string (- w 2)))))))
+        (gui/draw jc 1 (+ sy 2) (text/truncate-dotted eff-string (- w 2)))))))
 
 (defn redraw-screen 
   "Redraw the main playing screen"
