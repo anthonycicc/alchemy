@@ -1,11 +1,15 @@
+import nebula.plugin.clojuresque.tasks.ClojureCompile
+
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "5.0.0"
     application
-    id("nebula.clojure") version "8.1.1"
+    id("nebula.clojure") version Versions.nebula_clojure_gradle_plugin
+    id("de.fayard.buildSrcVersions") version Versions.de_fayard_buildsrcversions_gradle_plugin
+    id("com.github.johnrengelman.shadow") version Versions.com_github_johnrengelman_shadow_gradle_plugin
 }
 
 repositories {
+    mavenLocal()
     maven {
         url = uri("https://clojars.org/repo")
     }
@@ -20,13 +24,13 @@ repositories {
 }
 
 dependencies {
-    compile("org.clojure:clojure:1.5.1")
-    compile("net.mikera:orculje:0.0.2")
-    compile("net.mikera:mikera:1.5.0")
-    compile("net.mikera:swing-console:0.1.2")
-    compile("net.mikera:mathz:0.1.0")
-    compile("net.mikera:cljunit:0.2.0")
-    compile("org.clojure:math.combinatorics:0.0.3")
+    compile(Libs.clojure)
+    compile(Libs.orculje)
+    compile(Libs.mikera)
+    compile(Libs.swing_console)
+    compile(Libs.mathz)
+    compile(Libs.cljunit)
+    compile(Libs.math_combinatorics)
 }
 
 group = "net.mikera"
@@ -37,5 +41,9 @@ application {
 }
 
 tasks.withType<JavaCompile> {
+//    this.sourceCompatibility = "1.8"
     options.encoding = "UTF-8"
 }
+
+//tasks.register<ClojureCompile>("compileClojure")
+tasks.findByPath("compileClojure")!!.mustRunAfter("compileJava")
