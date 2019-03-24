@@ -789,63 +789,63 @@
 ;; ===================================================
 ;; libary definitions - weapons & attacks
 
-(def WIELD-TYPES {:right-hand {:replaces [:two-hands]}
-                   :left-hand {:replaces [:two-hands]}
-                   :two-hands {:replaces [:right-hand :left-hand]}
-                   :head {:replaces [:two-hands]}
-                   :body {:replaces [:two-hands]}
-                   :legs {:replaces [:two-hands]}
-                   :full-body {:replaces [:body]}
-                   :cloak {} 
-                   :necklace {} 
-                   :right-ring {}
-                   :left-ring {}
-                   :feet {}})
-
-(def ATT_NORMAL {:name "normal attack" 
-                 :ASK 1.0 :DSK 0.75 :AST 1.0 
-                 :damage-type :normal})
-(def ATT_KICK {:name "normal attack" 
-               :ASK 0.6 :DSK 0.3 :AST 0.5 
-               :damage-type :impact})
-(def ATT_CLAW {:name "normal attack" 
-               :ASK 0.7 :DSK 0.7 :AST 0.7 
-               :damage-type :normal
-               :hit-verb "claw"})
-
-(def ATT_BITE {:name "bite attack" 
-               :hit-verb "bite" 
-               :ASK 1.0 :DSK 0.2 :AST 1.0   ;; low dsk - can't block with a bite!
-               :damage-type :normal})
-
-(def ATT_POISON_BITE {:name "poison bite" 
-                      :hit-verb "bite"
-                      :ASK 1.0 :DSK 0.2 :AST 0.75 
-                      :damage-type :normal
-                      :damage-effect "poisoned"})
-
-(def ATT_SWORD {:name "sword" 
-                :ASK 1.2 :DSK 1.0 :AST 1.2 
-                :damage-type :normal 
-                :wield-types [:right-hand :left-hand]})
-(def ATT_AXE {:name "axe" 
-              :ASK 1.0 :DSK 0.5 :AST 1.5 
-              :damage-type :normal 
-              :wield-types [:right-hand :left-hand]})
-(def ATT_MACE {:name "mace" 
-               :ASK 1.0 :DSK 0.5 :AST 1.3 
-               :damage-type :impact 
-               :wield-types [:right-hand :left-hand]})
-(def ATT_CLUB {:name "club" 
-               :hit-verb "bash" 
-               :ASK 0.7 :DSK 0.4 :AST 1.0 
-               :damage-type :impact 
-               :wield-types [:right-hand :left-hand]})
-(def ATT_DAGGER {:name "dagger"
-                 :hit-verb "stab"
-                 :ASK 1.2 :DSK 0.8 :AST 0.8 
-                 :damage-type :normal 
-                 :wield-types [:right-hand :left-hand]})
+;(def WIELD-TYPES {:right-hand {:replaces [:two-hands]}
+;                   :left-hand {:replaces [:two-hands]}
+;                   :two-hands {:replaces [:right-hand :left-hand]}
+;                   :head {:replaces [:two-hands]}
+;                   :body {:replaces [:two-hands]}
+;                   :legs {:replaces [:two-hands]}
+;                   :full-body {:replaces [:body]}
+;                   :cloak {}
+;                   :necklace {}
+;                   :right-ring {}
+;                   :left-ring {}
+;                   :feet {}})
+;
+;(def ATT_NORMAL {:name "normal attack"
+;                 :ASK 1.0 :DSK 0.75 :AST 1.0
+;                 :damage-type :normal})
+;(def ATT_KICK {:name "normal attack"
+;               :ASK 0.6 :DSK 0.3 :AST 0.5
+;               :damage-type :impact})
+;(def ATT_CLAW {:name "normal attack"
+;               :ASK 0.7 :DSK 0.7 :AST 0.7
+;               :damage-type :normal
+;               :hit-verb "claw"})
+;
+;(def ATT_BITE {:name "bite attack"
+;               :hit-verb "bite"
+;               :ASK 1.0 :DSK 0.2 :AST 1.0   ;; low dsk - can't block with a bite!
+;               :damage-type :normal})
+;
+;(def ATT_POISON_BITE {:name "poison bite"
+;                      :hit-verb "bite"
+;                      :ASK 1.0 :DSK 0.2 :AST 0.75
+;                      :damage-type :normal
+;                      :damage-effect "poisoned"})
+;
+;(def ATT_SWORD {:name "sword"
+;                :ASK 1.2 :DSK 1.0 :AST 1.2
+;                :damage-type :normal
+;                :wield-types [:right-hand :left-hand]})
+;(def ATT_AXE {:name "axe"
+;              :ASK 1.0 :DSK 0.5 :AST 1.5
+;              :damage-type :normal
+;              :wield-types [:right-hand :left-hand]})
+;(def ATT_MACE {:name "mace"
+;               :ASK 1.0 :DSK 0.5 :AST 1.3
+;               :damage-type :impact
+;               :wield-types [:right-hand :left-hand]})
+;(def ATT_CLUB {:name "club"
+;               :hit-verb "bash"
+;               :ASK 0.7 :DSK 0.4 :AST 1.0
+;               :damage-type :impact
+;               :wield-types [:right-hand :left-hand]})
+;(def ATT_DAGGER {:name "dagger"
+;                 :hit-verb "stab"
+;                 :ASK 1.2 :DSK 0.8 :AST 0.8
+;                 :damage-type :normal
+;                 :wield-types [:right-hand :left-hand]})
 
 (defn define-weapons [lib]
   (-> lib ))

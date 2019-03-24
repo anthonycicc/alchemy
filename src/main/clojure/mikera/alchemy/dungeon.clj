@@ -5,7 +5,8 @@
   (:import [mikera.util Rand])
   (:require [mikera.cljutils.find :as find])
   (:require [mikera.alchemy.lib :as lib])
-  (:require [mikera.orculje.mapmaker :as mm]))
+  (:require [mikera.orculje.mapmaker :as mm])
+  (:require [mikera.cljutils.loops :as loops]))
 
 (defmacro and-as-> [expr sym & body]
   `(as-> ~expr ~sym
@@ -185,7 +186,7 @@
 (defn generate-block [game ^mikera.orculje.engine.Location lmin 
                           ^mikera.orculje.engine.Location lmax
                           connections]
-  (or-loop [10] 
+  (loops/or-loop [10]
     (cond
       (Rand/chance 0.3) (generate-caves game lmin lmax connections)
       (Rand/chance 0.1) (generate-grid game lmin lmax connections)
@@ -198,7 +199,7 @@
         h (inc (- y2 y1))
         sw (if (== 0 split-dir) w h)
         sw2 (quot sw 2)]
-    (or-loop [20]
+    (loops/or-loop [20]
       (let [split-point (+ 3 (Rand/r (- sw sw2 3)) (Rand/r (- sw2 3)))
             split-val (+ split-point (lmin split-dir))]
         (if (some (fn [^mikera.orculje.engine.Location l] (== split-val (nth l split-dir))) connections)
@@ -244,9 +245,9 @@
                          [new-con new-con2]
                          [new-con])] 
           (and-as-> game game
-                (or-loop [3] (generate-zone game lmin smax 
+                (loops/or-loop [3] (generate-zone game lmin smax 
                                (concat new-cons (find/eager-filter #(loc-within? (loc-dec lmin) (loc-inc smax) %) connections))))
-                (or-loop [3] (generate-zone game smin lmax 
+                (loops/or-loop [3] (generate-zone game smin lmax 
                                (concat new-cons (find/eager-filter #(loc-within? (loc-dec smin) (loc-inc lmax) %) connections) )))))))))
 
 (defn generate-level [game ^mikera.orculje.engine.Location lmin 
@@ -255,7 +256,7 @@
         [x2 y2 z] lmax]
     (as-> game game
       (generate-tunnel game lmin lmax (rand-loc lmin lmax) (rand-loc lmin lmax) "underground stream")
-      (or-loop [5] 
+      (loops/or-loop [5] 
         (generate-zone game lmin lmax [])))))
 
 (defn generate-region [game ^mikera.orculje.engine.Location lmin 
@@ -265,7 +266,7 @@
     (and-as-> game game
           (reduce 
                  (fn [game i ] 
-                    (and game (or-loop [3] 
+                    (and game (loops/or-loop [3] 
                       (generate-level game (loc x1 y1 i) (loc x2 y2 i)))))
                   game
                   (range z1 (inc z2))))))
@@ -279,7 +280,7 @@
       (and-as-> game game
                 (reduce 
                   (fn [game i ] 
-                    (or-loop [1000]
+                    (loops/or-loop [1000]
                       (let [x (Rand/range x1 x2)
                             y (Rand/range y1 y2)]
                         (and game (connect-levels game (loc x y i) (loc x y (inc i)) :link)))))
@@ -297,7 +298,7 @@
         [x2 y2 z2] lmax]
     (as-> game game
           (or 
-            (or-loop [1000] (mm/place-thing game (loc x1 y1 z2) lmax (lib/create game "exit staircase")))
+            (loops/or-loop [1000] (mm/place-thing game (loc x1 y1 z2) lmax (lib/create game "exit staircase")))
             (error "Can't place exit staircase!!"))
           (assoc game :start-location (location game (:last-added-id game))))))
 
@@ -311,7 +312,7 @@
         [x2 y2 z2] lmax]
     (as-> game game
           (or 
-            (or-loop [1000] (mm/place-thing game (loc x1 y1 OBJECTIVE_LEVEL) (loc x2 y2 OBJECTIVE_LEVEL) (lib/create game "The Philosopher's Stone")))
+            (loops/or-loop [1000] (mm/place-thing game (loc x1 y1 OBJECTIVE_LEVEL) (loc x2 y2 OBJECTIVE_LEVEL) (lib/create game "The Philosopher's Stone")))
             (error "Can't place philosopher's stone!!")))))
 
 

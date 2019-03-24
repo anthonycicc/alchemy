@@ -31,6 +31,7 @@ dependencies {
     compile(Libs.mathz)
     compile(Libs.cljunit)
     compile(Libs.math_combinatorics)
+    compile(Libs.clojure_utils)
 }
 
 group = "net.mikera"
